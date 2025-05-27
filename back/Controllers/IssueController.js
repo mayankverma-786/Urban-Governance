@@ -1,0 +1,58 @@
+const Issue = require('../Models/Issue'); 
+
+const createIssue = async (req, res) => {
+    try {
+        // if (!req.user) {
+        //     console.error('Unauthorized: req.user is undefined');
+        //     return res.status(401).json({ message: 'Unauthorized: User not authenticated' });
+        // }
+
+        const { title, description, category, location } = req.body;
+
+        // Handle single image file from the front-end
+        const imageFile = req.file; // Single file object
+        const imageFileNames = imageFile ? [imageFile.filename] : [];
+
+        const issue = new Issue({
+            title,
+            description,
+            category,
+            location,
+            images: imageFileNames, // Save an array of image filenames
+            reportedBy: req.user.id, 
+        });
+
+        console.log(imageFileNames);
+
+        await issue.save();
+        res.status(201).json({ message: "Your report has been successfully filed. We'll take it from here!", issue });
+    } catch (err) {
+        console.log('Error creating issue:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+const getIssues = async (req, res) => {
+    const userId = req.user.id;  // Make sure to get the userId from the authenticated user
+
+    try {
+        // Get issues reported by the user
+        const issues = await Issue.find({ reportedBy: userId })
+            .populate('reportedBy', 'name _id'); // Optionally populate user info
+
+        // Map through issues to include the image URL if available
+        const updatedIssues = issues.map(issue => ({
+            ...issue._doc, // Copy the issue document
+            imageURL: issue.images
+                ? `${process.env.BASE_URL || 'http://localhost:4000'}/file/${issue.images}` // Generate URL
+                : null,
+        }));
+
+        res.status(200).json(updatedIssues);
+    } catch (err) {
+        console.error('Error fetching issues:', err);
+        res.status(500).json({ message: 'Internal server error' });
+    }
+};
+
+module.exports = { createIssue, getIssues };

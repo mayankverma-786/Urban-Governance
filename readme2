@@ -1,0 +1,463 @@
+return (
+    <div className="flex items-center justify-center min-h-screen bg-indigo-50 font-inter px-4">
+      <form onSubmit={handleSubmit} className="max-w-md w-full bg-white p-8 rounded-xl shadow-lg border">
+        <h2 className="text-3xl font-bold text-indigo-700 mb-6 text-center">Login to Your Account</h2>
+        {error && <div className="bg-red-100 text-red-700 p-3 mb-4 rounded">{error}</div>}
+
+        <label className="block mb-2 text-sm font-medium text-gray-700">Email</label>
+        <input
+          type="email"
+          name="email"
+          onChange={handleChange}
+          required
+          className="w-full mb-4 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
+
+        <label className="block mb-2 text-sm font-medium text-gray-700">Password</label>
+        <input
+          type="password"
+          name="password"
+          onChange={handleChange}
+          required
+          className="w-full mb-6 px-4 py-2 border rounded-lg focus:ring-2 focus:ring-indigo-400 outline-none"
+        />
+
+        <button type="submit" className="w-full bg-indigo-600 text-white py-2 rounded-lg hover:bg-indigo-700 transition">
+          Sign In
+        </button>
+
+        <p className="text-center mt-4 text-sm text-gray-600">
+          Don't have an account?{' '}
+          <Link to="/signup" className="text-amber-500 font-semibold hover:underline">
+            Create one
+          </Link>
+        </p>
+      </form>
+    </div>
+  );
+
+
+<path d="M7.5 13.25C7.98703 13.25 8.45082 13.1505 8.87217 12.9708C8.46129 14.0478 7.62459 15.5792 6.35846 15.76C5.81173 15.8382 5.43183 16.3447 5.50993 16.8914C5.58804 17.4382 6.09457 17.8181 6.6413 17.7399C9.19413 17.3753 10.7256 14.4711 11.169 12.1909C11.4118 10.942 11.3856 9.58095 10.8491 8.44726C10.2424 7.16517 8.92256 6.24402 7.48508 6.25001C5.55895 6.25805 4 7.82196 4 9.74998C4 11.683 5.567 13.25 7.5 13.25Z" fill="currentColor"></path>
+<path d="M16.18 13.25C16.667 13.25 17.1308 13.1505 17.5522 12.9708C17.1413 14.0478 16.3046 15.5792 15.0385 15.76C14.4917 15.8382 14.1118 16.3447 14.1899 16.8914C14.268 17.4382 14.7746 17.8181 15.3213 17.7399C17.8741 17.3753 19.4056 14.4711 19.849 12.1909C20.0918 10.942 20.0656 9.58095 19.5291 8.44726C18.9224 7.16517 17.6026 6.24402 16.1651 6.25001C14.2389 6.25805 12.68 7.82196 12.68 9.74998C12.68 11.683 14.247 13.25 16.18 13.25Z" fill="currentColor"></path>
+  04151f-183a37-efd6ac-c44900-432534
+
+
+
+
+  const fullLocation = suggestion.name
+        ? `${suggestion.name}, ${suggestion.address}`
+        : suggestion.address;
+        setFormData(formData => ({
+            ...formData,
+            location: fullLocation,
+        }));
+        setAddress(fullLocation);
+p-10 shadow-lg w-full lg:w-1/2 rounded-r-lg
+
+flex justify-center items-center min-h-screen
+
+flex w-full max-w-7xl
+import React, { useState, useEffect } from 'react';
+import { Link, Routes, Route } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+
+const Home = () => {
+  const [hoveredDot, setHoveredDot] = useState(null);
+  const [currentMessageIndex, setCurrentMessageIndex] = useState(0);
+
+  // Multiple rotating welcome messages
+  const welcomeMessages = [
+    "Welcome to UrbanConnect",
+    "Smart City Solutions",
+    "Digital Governance Platform",
+    "Connecting Citizens & Services",
+    "Innovation for Better Living"
+  ];
+
+  // Auto-cycle through messages
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentMessageIndex((prev) => (prev + 1) % welcomeMessages.length);
+    }, 3000);
+    return () => clearInterval(interval);
+  }, []);
+
+  // Icons for the animated skyline dots
+  const skylineIcons = [
+    { id: 1, icon: '🌐', label: 'Wi-Fi Hotspots' },
+    { id: 2, icon: '🚦', label: 'Smart Traffic' },
+    { id: 3, icon: '☀', label: 'Solar Energy' },
+    { id: 4, icon: '🗑', label: 'Waste Management' },
+  ];
+
+  // Governance features
+  const governanceFeatures = [
+    {
+      icon: '📊',
+      title: 'Data-Driven Decisions',
+      description: 'Real-time analytics for urban planning and resource allocation'
+    },
+    {
+      icon: '🤝',
+      title: 'Citizen Engagement',
+      description: 'Direct channels for community feedback and participation'
+    },
+    {
+      icon: '⚡',
+      title: 'Efficient Services',
+      description: 'Streamlined municipal operations with digital workflows'
+    }
+  ];
+
+  return (
+    <div className="flex flex-col min-h-screen text-gray-900 relative overflow-hidden">
+      {/* Background with subtle animation */}
+      <motion.div 
+        className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80')] bg-cover bg-center opacity-20"
+        initial={{ scale: 1.05 }}
+        animate={{ scale: 1 }}
+        transition={{ duration: 10, repeat: Infinity, repeatType: "reverse" }}
+      />
+      <div className="absolute inset-0 bg-gradient-to-b from-white/80 to-blue-50/80" />
+
+      {/* Content Container */}
+      <div className="relative z-10">
+        {/* Unique Welcome Message Panel */}
+        <header className="pt-16 pb-12 md:pt-24 md:pb-16">
+          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <motion.div 
+              className="bg-white/90 backdrop-blur-lg rounded-3xl shadow-2xl overflow-hidden border border-white/30 p-8 md:p-12 relative"
+              initial={{ opacity: 0, y: 50 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8 }}
+            >
+              {/* Decorative elements */}
+              <div className="absolute -top-10 -right-10 w-32 h-32 bg-blue-100 rounded-full opacity-20 blur-xl" />
+              <div className="absolute -bottom-8 -left-8 w-24 h-24 bg-purple-100 rounded-full opacity-20 blur-xl" />
+              
+              <div className="relative z-10 text-center">
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={currentMessageIndex}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    exit={{ opacity: 0, y: -20 }}
+                    transition={{ duration: 0.5 }}
+                  >
+                    <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
+                      <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                        <span className="[text-shadow:0_0_15px_rgba(255,255,255,0.9)]">
+                          {welcomeMessages[currentMessageIndex]}
+                        </span>
+                      </span>
+                    </h1>
+                    <motion.div 
+                      className="h-1 bg-gradient-to-r from-blue-400 to-purple-400 rounded-full mx-auto w-1/2"
+                      initial={{ scaleX: 0 }}
+                      animate={{ scaleX: 1 }}
+                      transition={{ duration: 0.8, delay: 0.3 }}
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                <div className="flex justify-center mt-8 space-x-2">
+                  {welcomeMessages.map((_, index) => (
+                    <motion.button
+                      key={index}
+                      className={h-2 w-2 rounded-full transition-colors ${index === currentMessageIndex ? 'bg-blue-600' : 'bg-gray-300'}}
+                      initial={{ scale: 1 }}
+                      animate={{ 
+                        scale: index === currentMessageIndex ? 1.5 : 1,
+                        opacity: index === currentMessageIndex ? 1 : 0.6
+                      }}
+                      transition={{ duration: 0.3 }}
+                      onClick={() => setCurrentMessageIndex(index)}
+                    />
+                  ))}
+                </div>
+              </div>
+            </motion.div>
+          </div>
+        </header>
+
+        {/* Interactive Skyline */}
+        <div className="relative h-24 bg-gradient-to-b from-white/80 to-blue-50/80 overflow-hidden">
+          <div className="absolute inset-x-0 bottom-0 flex justify-center space-x-8 md:space-x-12">
+            {skylineIcons.map((item) => (
+              <motion.div
+                key={item.id}
+                className="relative group"
+                onMouseEnter={() => setHoveredDot(item.id)}
+                onMouseLeave={() => setHoveredDot(null)}
+                whileHover={{ scale: 1.3 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                <div className={h-3 w-3 rounded-full ${hoveredDot === item.id ? 'bg-blue-600 shadow-lg' : 'bg-blue-400 shadow-md'}} />
+                {hoveredDot === item.id && (
+                  <motion.div 
+                    className="absolute -top-10 left-1/2 transform -translate-x-1/2 bg-white px-2 py-1 rounded-lg shadow-md text-xs font-medium whitespace-nowrap"
+                    initial={{ opacity: 0, y: 5 }}
+                    animate={{ opacity: 1, y: 0 }}
+                  >
+                    <span className="mr-1">{item.icon}</span>
+                    {item.label}
+                  </motion.div>
+                )}
+              </motion.div>
+            ))}
+          </div>
+          <svg className="absolute bottom-0 w-full" viewBox="0 0 1200 60" preserveAspectRatio="none">
+            <path d="M0,60 L1200,60 L1200,30 Q1100,45 1000,30 Q900,15 800,45 Q700,10 600,35 Q500,20 400,45 Q300,15 200,30 Q100,45 0,30 Z" fill="rgba(248,250,252,0.9)" />
+          </svg>
+        </div>
+
+        {/* Main Content */}
+        <main className="flex-1 p-4 md:p-8">
+          <div className="max-w-6xl mx-auto">
+            <Routes>
+              <Route
+                path="/"
+                element={
+                  <>
+                    {/* Transforming Governance Section */}
+                    <section className="py-12 px-4">
+                      <motion.div 
+                        className="bg-white/90 backdrop-blur-md rounded-3xl shadow-xl overflow-hidden border border-white/50"
+                        initial={{ opacity: 0, y: 50 }}
+                        whileInView={{ opacity: 1, y: 0 }}
+                        viewport={{ once: true, margin: "-100px" }}
+                        transition={{ duration: 0.8 }}
+                      >
+                        <div className="grid md:grid-cols-2 gap-0">
+                          <div className="p-8 md:p-10 lg:p-12">
+                            <motion.h2
+                              className="text-3xl md:text-4xl font-bold text-gray-800 mb-6"
+                              initial={{ opacity: 0, x: -20 }}
+                              whileInView={{ opacity: 1, x: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.2 }}
+                            >
+                              <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                                Transforming Urban Governance
+                              </span>
+                            </motion.h2>
+                            
+                            <motion.p
+                              className="text-lg text-gray-600 mb-8"
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.4 }}
+                            >
+                              UrbanConnect revolutionizes municipal administration through digital innovation, 
+                              creating transparent, efficient, and citizen-centric smart cities.
+                            </motion.p>
+                            
+                            <ul className="space-y-6 mb-10">
+                              {governanceFeatures.map((feature, index) => (
+                                <motion.li 
+                                  key={index}
+                                  className="flex items-start bg-white/50 p-4 rounded-xl shadow-sm hover:shadow-md transition-all"
+                                  initial={{ opacity: 0, x: -20 }}
+                                  whileInView={{ opacity: 1, x: 0 }}
+                                  viewport={{ once: true }}
+                                  transition={{ delay: 0.4 + index * 0.1 }}
+                                  whileHover={{ x: 5 }}
+                                >
+                                  <span className="text-3xl mr-4">{feature.icon}</span>
+                                  <div>
+                                    <h3 className="font-bold text-gray-700 text-lg">{feature.title}</h3>
+                                    <p className="text-gray-600 mt-1">{feature.description}</p>
+                                  </div>
+                                </motion.li>
+                              ))}
+                            </ul>
+                            
+                            <motion.div
+                              initial={{ opacity: 0, y: 20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.8 }}
+                            >
+                              <Link 
+                                to="/services" 
+                                className="inline-flex items-center px-8 py-4 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full font-medium shadow-lg hover:shadow-xl transition-all hover:scale-[1.02]"
+                              >
+                                Explore All Services
+                                <svg className="w-5 h-5 ml-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
+                                </svg>
+                              </Link>
+                            </motion.div>
+                          </div>
+                          
+                          <div className="hidden md:block relative bg-gradient-to-br from-blue-50 to-purple-50 overflow-hidden min-h-[400px]">
+                            <motion.div
+                              className="absolute inset-0"
+                              initial={{ opacity: 0 }}
+                              whileInView={{ opacity: 1 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: 0.4 }}
+                            >
+                              <motion.img
+                                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=2070&q=80" 
+                                alt="Modern cityscape"
+                                className="object-cover w-full h-full"
+                                initial={{ scale: 1.2 }}
+                                animate={{ 
+                                  scale: 1.1,
+                                  transition: { duration: 10 }
+                                }}
+                                whileHover={{
+                                  scale: 1.15,
+                                  transition: { duration: 0.5 }
+                                }}
+                              />
+                              <div className="absolute inset-0 bg-gradient-to-t from-blue-900/30 to-transparent" />
+                              <motion.div
+                                className="absolute bottom-8 left-8 bg-white/90 px-6 py-3 rounded-xl shadow-xl"
+                                initial={{ y: 30, opacity: 0 }}
+                                whileInView={{ y: 0, opacity: 1 }}
+                                viewport={{ once: true }}
+                                transition={{ delay: 0.8, duration: 0.8 }}
+                              >
+                                <span className="font-semibold text-blue-600">Smart City Solutions</span>
+                              </motion.div>
+                            </motion.div>
+                          </div>
+                        </div>
+                      </motion.div>
+                    </section>
+
+                    {/* Your Gateway Section */}
+                    <motion.section 
+                      className="py-12 px-4"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <div className="relative">
+                        <motion.div 
+                          className="bg-white/80 p-8 md:p-12 rounded-3xl shadow-xl backdrop-blur-lg border border-white/30 relative overflow-hidden"
+                          initial={{ y: 50, opacity: 0 }}
+                          whileInView={{ y: 0, opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          {/* Decorative elements */}
+                          <div className="absolute -top-20 -right-20 w-40 h-40 bg-blue-100 rounded-full opacity-10 blur-xl" />
+                          <div className="absolute -bottom-10 -left-10 w-32 h-32 bg-purple-100 rounded-full opacity-10 blur-xl" />
+                          
+                          <motion.h2
+                            className="text-3xl md:text-5xl font-bold mb-6 text-center"
+                            initial={{ opacity: 0, y: 20 }}
+                            whileInView={{ opacity: 1, y: 0 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.4 }}
+                          >
+                            <span className="bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+                              Your Gateway to Smarter City Living
+                            </span>
+                          </motion.h2>
+                          
+                          <motion.p
+                            className="text-lg md:text-xl text-gray-700 mb-8 max-w-2xl mx-auto text-center"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.6 }}
+                          >
+                            Access all municipal services in one convenient platform with seamless integration
+                          </motion.p>
+                          
+                          <motion.div
+                            className="flex flex-col sm:flex-row justify-center gap-6"
+                            initial={{ opacity: 0 }}
+                            whileInView={{ opacity: 1 }}
+                            viewport={{ once: true }}
+                            transition={{ delay: 0.8 }}
+                          >
+                            <motion.div
+                              whileHover={{ y: -8 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Link
+                                to="/services"
+                                className="inline-block bg-gradient-to-r from-blue-600 to-blue-500 text-white px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transition-all"
+                              >
+                                Explore Services
+                              </Link>
+                            </motion.div>
+                            <motion.div
+                              whileHover={{ y: -8 }}
+                              whileTap={{ scale: 0.95 }}
+                            >
+                              <Link
+                                to="/contact"
+                                className="inline-block bg-white text-blue-600 px-8 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl border-2 border-blue-600 transition-all"
+                              >
+                                Get Help
+                              </Link>
+                            </motion.div>
+                          </motion.div>
+                        </motion.div>
+                      </div>
+                    </motion.section>
+
+                    {/* Stats Section */}
+                    <motion.section 
+                      className="py-12 px-4"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <div className="bg-gradient-to-r from-blue-600 to-purple-600 rounded-3xl p-8 md:p-10 text-white text-center relative overflow-hidden">
+                        {/* Decorative elements */}
+                        <div className="absolute top-0 right-0 w-32 h-32 bg-white/10 rounded-full blur-xl" />
+                        <div className="absolute bottom-0 left-0 w-24 h-24 bg-white/10 rounded-full blur-xl" />
+                        
+                        <motion.h3
+                          className="text-2xl md:text-3xl font-bold mb-8"
+                          initial={{ opacity: 0 }}
+                          whileInView={{ opacity: 1 }}
+                          viewport={{ once: true }}
+                          transition={{ delay: 0.2 }}
+                        >
+                          Powering the Cities of Tomorrow
+                        </motion.h3>
+                        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 md:gap-8">
+                          {[
+                            { value: "75+", label: "Municipal Services", delay: 0.3 },
+                            { value: "1M+", label: "Citizens Served", delay: 0.4 },
+                            { value: "24/7", label: "Service Availability", delay: 0.5 }
+                          ].map((stat, index) => (
+                            <motion.div 
+                              key={index}
+                              className="bg-white/10 p-6 rounded-xl backdrop-blur-sm hover:bg-white/20 transition-colors"
+                              initial={{ opacity: 0, y: 20 }}
+                              whileInView={{ opacity: 1, y: 0 }}
+                              viewport={{ once: true }}
+                              transition={{ delay: stat.delay }}
+                              whileHover={{ scale: 1.05 }}
+                            >
+                              <div className="text-4xl md:text-5xl font-bold mb-3">{stat.value}</div>
+                              <div className="text-sm md:text-base opacity-90">{stat.label}</div>
+                            </motion.div>
+                          ))}
+                        </div>
+                      </div>
+                    </motion.section>
+                  </>
+                }
+              />
+            </Routes>
+          </div>
+        </main>
+      </div>
+    </div>
+  );
+};
+
+export default Home;
